@@ -1,0 +1,41 @@
+.containerFormContact {
+    margin: auto;
+    width: 280px;
+}
+.containerInput {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+.containerInput label {
+    font-size: smaller;
+    color: var(--color-primary);
+    margin-bottom: .3rem;
+}
+span.required {
+    color: red;
+    font-size: large;
+}
+.containerInput input, .containerInput select {
+    border: none;
+    border-bottom: 1px solid var(--color-secondary);
+    height: 2rem;
+}
+.btn-form {
+    width: 100%;
+}
+.containerInput textarea{
+    border: 1px solid var(--color-secondary);
+    border-radius: .5rem;
+    height: 5rem;
+    padding: .5rem;
+}
+.containerFormLogin {
+    flex-direction: column;
+    width: 320px;
+    min-height: 80vh;
+    padding: var(--padding);
+}
+.formLogin {
+    flex-direction: column;
+}

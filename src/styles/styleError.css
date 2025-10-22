@@ -1,0 +1,12 @@
+.containerError {
+    width: 100vw;
+    min-height: 85vh;
+    align-content: center;
+}
+.containerError h2 {
+    color: var(--color-ghost);
+    font-size: 8vh;
+}
+.containerError img {
+    width: 100%;
+}
