@@ -1,72 +1,72 @@
 export const Users = [
   {
     "id": 1,
-    "nombre": "Talent Tech",
-    "correo electrónico": "admin_tt@email.com",
-    "contraseña": "admin1234",
-    "tipo": "admin"
+    "fullname": "Talento Tech",
+    "email": "talento-tech@email.com",
+    "password": "admin1234",
+    "type": "admin"
   },
   {
     "id": 2,
-    "nombre": "Minnnie",
-    "correo electrónico": "myeabsley1@imageshack.us",
-    "contraseña": "rK4QjFotUceN80",
-    "tipo": "cliente"
+    "fullname": "Romina",
+    "email": "romii.carranza@gmail.com",
+    "password": "1234",
+    "type": "cliente"
   },
   {
     "id": 3,
-    "nombre": "Trstram",
-    "correo electrónico": "totridge2@patch.com",
-    "contraseña": "uV3sxVZscMQwH",
-    "tipo": "cliente"
+    "fullname": "Trstram",
+    "email": "totridge2@patch.com",
+    "password": "uV3sxVZscMQwH",
+    "type": "cliente"
   },
   {
     "id": 4,
-    "nombre": "Marcy",
-    "correo electrónico": "mdougan3@delicious.com",
-    "contraseña": "dY8frmVMC2pR",
-    "tipo": "cliente"
+    "fullname": "Marcy",
+    "email": "mdougan3@delicious.com",
+    "password": "dY8frmVMC2pR",
+    "type": "cliente"
   },
   {
     "id": 5,
-    "nombre": "Bessie",
-    "correo electrónico": "bmcmorran4@wired.com",
-    "contraseña": "gD57LdsjD4cd",
-    "tipo": "cliente"
+    "fullname": "Bessie",
+    "email": "bmcmorran4@wired.com",
+    "password": "gD57LdsjD4cd",
+    "type": "cliente"
   },
   {
     "id": 6,
-    "nombre": "Clem",
-    "correo electrónico": "cstoad5@columbia.edu",
-    "contraseña": "oG4Wp0lS",
-    "tipo": "admin"
+    "fullname": "Clem",
+    "email": "cstoad5@columbia.edu",
+    "password": "oG4Wp0lS",
+    "type": "admin"
   },
   {
     "id": 7,
-    "nombre": "Cammie",
-    "correo electrónico": "cfuzzens6@pcworld.com",
-    "contraseña": "uB2HCqLjL",
-    "tipo": "cliente"
+    "fullname": "Cammie",
+    "email": "cfuzzens6@pcworld.com",
+    "password": "uB2HCqLjL",
+    "type": "cliente"
   },
   {
     "id": 8,
-    "nombre": "Marline",
-    "correo electrónico": "mgiovannoni7@skyrock.com",
-    "contraseña": "aX58dqKrV",
-    "tipo": "cliente"
+    "fullname": "Marline",
+    "email": "mgiovannoni7@skyrock.com",
+    "password": "aX58dqKrV",
+    "type": "cliente"
   },
   {
     "id": 9,
-    "nombre": "Manny",
-    "correo electrónico": "mdykins8@msn.com",
-    "contraseña": "pK3AMH",
-    "tipo": "admin"
+    "fullname": "Manny",
+    "email": "mdykins8@msn.com",
+    "password": "pK3AMH",
+    "type": "admin"
   },
   {
     "id": 10,
-    "nombre": "Mignon",
-    "correo electrónico": "mjarrold9@dell.com",
-    "contraseña": "yY7TcIf",
-    "tipo": "cliente"
+    "fullname": "Mignon",
+    "email": "mjarrold9@dell.com",
+    "password": "yY7TcIf",
+    "type": "cliente"
   }
 ]

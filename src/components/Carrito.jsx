@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../context/AppContext';
+import { useCartContext } from '../context/CartContext';
 import '../styles/Cart.css'
 
 function Carrito({ mostrar, cerrar }) {
     const navigate = useNavigate();
-    const {carrito, agregarAlCarrito, vaciarCarrito, eliminarProducto, restarAlCarrito, total } = useAppContext();
+    const {carrito, agregarAlCarrito, vaciarCarrito, eliminarProducto, restarAlCarrito, total } = useCartContext();
 
     const confirmarCompra = () => {
       navigate('/login', { state: {carrito} });

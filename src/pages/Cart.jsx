@@ -1,12 +1,12 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppContext } from '../context/AppContext';
+import { useCartContext } from '../context/CartContext';
 import '../styles/Cart.css'
 
 function Cart() {
   const location = useLocation();
   const navigate = useNavigate();
-  const {carrito, agregarAlCarrito, restarAlCarrito, vaciarCarrito, eliminarProducto, total, totalProductos } = useAppContext();
+  const {carrito, agregarAlCarrito, restarAlCarrito, vaciarCarrito, eliminarProducto, total, totalProductos } = useCartContext();
 
   function pagar() {
     vaciarCarrito()
@@ -39,7 +39,7 @@ function Cart() {
           <div className="cart-resume flex column">
             <p className='flex space-b'>Productos: ({totalProductos}) <span>$ {total}</span></p>
             <p className='flex space-b'>Envío: <span>$8.000</span></p>
-            <p className='title-min'>Total a pagar: ${Number(total)+ 8000}</p>
+            <p className='title-min'>Total a pagar: ${Number(Number((total)).toFixed(2)) + 8000}</p>
             <button className="btn btn100" onClick={ pagar }>
             Pagar
             </button>

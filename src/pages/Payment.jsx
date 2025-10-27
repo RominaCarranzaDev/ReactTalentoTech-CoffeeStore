@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext }from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/stylePayment.css'
-import { useAppContext } from '../context/AppContext';
+import { useAuthContext } from '../context/AuthContext';
 
 function Payment() {
     const location = useLocation();
@@ -9,7 +9,7 @@ function Payment() {
     const [compraConfirmada, setCompraConfirmada] = useState(false);
     const [date, setDate] = useState(new Date().toLocaleString());
 
-    const {vaciarCarrito, isAuthenticated, setIsAuthenticated, user, setUser, cerrarSesion} = useAppContext();
+    const {user, cerrarSesion} = useAuthContext();
     
     const carrito = location.state?.carrito || [];
     const totalCompra = carrito.reduce((acc, prod) => acc + (parseFloat(prod.price) * prod.quantity), 0).toFixed(2);
@@ -31,15 +31,8 @@ function Payment() {
 
     
 
-    return (
+    return (        
         <div>
-            <div>
-                <h2>{user.email}</h2>
-
-                <button className='btn btn-out' onClick={cerrarSesion}>Cerrar sesión</button>
-                <hr />
-            </div>
-            <div>
                 { carrito.length > 0 ? (
                 <div className="ticket">
                     <h2 className="title">Dolce Vita Caffé</h2>
@@ -58,7 +51,7 @@ function Payment() {
                         <span>Total</span>
                         <strong>${totalCompra}</strong>
                     </p>
-
+                    <hr />
                     <div className="ticket-footer">
                         <p>¡Esperamos verte pronto!</p>
                         <p>Emitido: {date}</p>
@@ -72,9 +65,6 @@ function Payment() {
             ): (
                 <p className="no-data">No hay datos de compra.</p>
                 )}
-            </div>
-        </div>  
-     )
-}
-
-export default Payment
+        </div>
+    )
+} export default Payment

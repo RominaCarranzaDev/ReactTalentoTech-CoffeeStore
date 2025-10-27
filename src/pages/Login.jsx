@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAppContext } from '../context/AppContext';
+import { useAuthContext } from '../context/AuthContext';
 import '../styles/styleForm.css'
 
 function Login() {
   const navigate = useNavigate();
   const ubicacion = useLocation();
-  const [formulario, setFormulario] = useState({ email: '', password: '' });
-
-  const {isAuthenticated, setIsAuthenticated, setUser, user} = useAppContext();
+  const { iniciarSesion, isAuthenticated, user } = useAuthContext();
+  const [formulario, setFormulario] = useState({email: "", password: ""});
 
   useEffect(() => {
-    if (isAuthenticated) {
-      if (ubicacion.state?.carrito) {
-        navigate("/cart", { state: { carrito: ubicacion.state.carrito } });
-      } else {
-        navigate("/store");
+      if (isAuthenticated && user) {
+        if (user.type === "admin") {
+          navigate("/dashboard");
+        } else if (ubicacion.state?.carrito) {
+          navigate("/cart", { state: { carrito: ubicacion.state.carrito } });
+        } else {
+          navigate("/store");
+        }
       }
-    }
-  }, [isAuthenticated, navigate, ubicacion.state]);
+    }, [isAuthenticated, user, navigate]);
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    if (formulario.email && formulario.password) {
-      setIsAuthenticated(true);
-      setUser(formulario);
-      console.log(user)
-      // if (ubicacion.state?.carrito) {
-      //   navigate('/cart', { state: { carrito: ubicacion.state.carrito } });
-      // } else {
-      //   navigate('/store');
-      // }
+    const { email, password } = formulario;
+    
+    const resultado = iniciarSesion(email, password);
+    const usuario = resultado.user;
+
+    if (usuario.type === "admin") {
+      navigate("/dashboard");
+    } else if (location.state?.carrito) {
+      navigate("/cart", { state: { carrito: location.state.carrito } });
+    } else {
+      navigate("/store");
     }
   };
+
 
   return (
     <>

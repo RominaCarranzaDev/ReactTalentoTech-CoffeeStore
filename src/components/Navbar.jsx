@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import { Link, useLocation } from 'react-router-dom'
-import { useAppContext } from "../context/AppContext";
+import { useCartContext } from "../context/CartContext";
+import { useAuthContext } from "../context/AuthContext";
 
 function Navbar() {
     const [open, setOpen] = useState(false);
-    const { isAuthenticated, user, cerrarSesion, carrito, totalProductos } = useAppContext();
+    const {  carrito, totalProductos } = useCartContext();
+    const {user , isAuthenticated, cerrarSesion } = useAuthContext();
     const location = useLocation();
     const currentPath = location.pathname;
 
@@ -22,7 +24,7 @@ function Navbar() {
                     <li><Link to='/contact-us' onClick={() => setOpen(false)}><i className='bx bx-phone'></i>Contacto</Link></li>
                     <li><Link to='/cart' onClick={() => setOpen(false)}><i className='bx bx-shopping-bag'></i>Carrito</Link></li>
                     <li>{isAuthenticated ? ( 
-                       <><span>Hola, {user.email}</span>
+                       <><span>Hola, {user.name}</span>
                         <button onClick={cerrarSesion}><i className='bx bx-arrow-out-left-square-half'  ></i> </button> </>
                     ):(
                     <Link to='/login' onClick={() => setOpen(false)}><i className='bx bx-user'></i>Acceder </Link>) }</li>
@@ -38,7 +40,7 @@ function Navbar() {
                     <i className='bx bx-shopping-bag'>{carrito.length > 0 && (<span className='count-cart-nav'>{totalProductos}</span>)}</i></Link></li>
                 <li>
                     {isAuthenticated ? ( 
-                       <><p>Hola, {user.email}</p>
+                       <><p>Hola, {user.name}</p>
                         <button onClick={cerrarSesion}><i className='bx bx-arrow-out-left-square-half'></i>Salir</button> 
                         </>
                     ):(

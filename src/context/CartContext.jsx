@@ -1,17 +1,8 @@
 import React, { createContext, useContext, useState }from 'react'
 
-export const AppContext = createContext();
+export const CartContext = createContext();
 
-export function AppProvider({children}){
-    
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState({ email: '', password: ''});
-
-    const cerrarSesion = () => {
-        setIsAuthenticated(false);
-        setUser({ email: '', password: '' });
-    };
-
+export function CartProvider({children}){
     const [carrito, setCarrito] = useState([]);
 
     const agregarAlCarrito = (producto) => {
@@ -53,15 +44,9 @@ export function AppProvider({children}){
 
     const totalProductos = carrito.reduce((acc, prod) => acc + prod.quantity, 0);
 
-    const total = carrito.reduce((acc, prod) => acc + (parseFloat(prod.price) * prod.quantity), 0).toFixed(2);
+    const total = Number(carrito.reduce((acc, prod) => acc + (parseFloat(prod.price) * prod.quantity), 0).toFixed(2));
 
     const value = {
-        user,
-        setUser,
-        isAuthenticated,
-        setIsAuthenticated,
-        cerrarSesion,
-
         carrito,
         setCarrito,
         agregarAlCarrito,
@@ -73,16 +58,16 @@ export function AppProvider({children}){
     }
 
     return (
-        <AppContext.Provider value={value}>
+        <CartContext.Provider value={value}>
             {children}
-        </AppContext.Provider>
+        </CartContext.Provider>
     );
 }
 
-export function useAppContext() {
-    const context = useContext(AppContext);
+export function useCartContext() {
+    const context = useContext(CartContext);
     if(!context){
-        throw new Error('useAppContext debe usarse dentro de AppProvider');
+        throw new Error('useCartContext debe usarse dentro de CartProvider');
     } 
     return context;
 }

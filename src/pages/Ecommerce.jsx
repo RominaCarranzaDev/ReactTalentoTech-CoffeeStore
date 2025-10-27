@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useCartContext } from '../context/CartContext';
 import Carrito from '../components/Carrito';
 import ProductoList from '../components/ProductList';
 import '../styles/Product.css';
-import { useAppContext } from '../context/AppContext';
 
 function Layout({ children }) {
   return (
@@ -13,7 +13,7 @@ function Layout({ children }) {
 }
 
 function Ecommerce() {
-  const {carrito, totalProductos } = useAppContext();
+  const {carrito, totalProductos } = useCartContext();
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
   const [productosCargados, setProductosCargados] = useState(false);
   
