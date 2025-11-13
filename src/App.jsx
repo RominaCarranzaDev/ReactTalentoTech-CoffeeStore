@@ -3,6 +3,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { CartProvider } from "./context/CartContext"
 import { AuthProvider } from "./context/AuthContext"
+import { ProductProvider } from "./context/ProductContext";
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -21,6 +22,7 @@ function App() {
     <>
       <AuthProvider >
         <CartProvider >
+          <ProductProvider >
           <Header />
           <Routes>
             <Route path='/' element={<Home />} />
@@ -39,6 +41,7 @@ function App() {
                 </ProtectedRoute>}/>
           </Routes>
           <Footer />
+          </ProductProvider>
         </CartProvider>
       </AuthProvider>
     </>

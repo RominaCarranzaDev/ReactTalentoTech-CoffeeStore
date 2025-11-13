@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { Users } from '../database/Users';
+import { Users } from '../dataJSON/Users';
 
 export const AuthContext = createContext();
 

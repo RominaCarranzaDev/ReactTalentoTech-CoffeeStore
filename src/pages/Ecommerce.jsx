@@ -15,20 +15,17 @@ function Layout({ children }) {
 function Ecommerce() {
   const {carrito, totalProductos } = useCartContext();
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
-  const [productosCargados, setProductosCargados] = useState(false);
   
   return (
     <Layout>
-      {productosCargados && (
         <button className='btn-cart'
           onClick={() => setMostrarCarrito(!mostrarCarrito)}><i className='bx bx-shopping-bag'></i> 
           {carrito.length > 0 && (
             <span className='count-cart'>{totalProductos}</span>
           )}
         </button>
-      )}
-
-      <ProductoList onLoaded={setProductosCargados}/>
+    
+      <ProductoList view={'card'} />
       
       {mostrarCarrito && (
         <Carrito 

@@ -1,8 +1,14 @@
 import React from 'react'
+import FormProduct from '../components/FormProduct'
+import ProductoList from '../components/ProductList'
 
 function Dashboard() {
   return (
-    <section>Dashboard</section>
+    <section>
+      <h2>Dashboard</h2>
+      <FormProduct />
+      <ProductoList view={'list'}/>
+    </section>
   )
 }
 

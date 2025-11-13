@@ -2,7 +2,7 @@ export const Users = [
   {
     "id": 1,
     "fullname": "Talento Tech",
-    "email": "talento-tech@email.com",
+    "email": "admin@gmail.com",
     "password": "admin1234",
     "type": "admin"
   },
@@ -11,7 +11,7 @@ export const Users = [
     "fullname": "Romina",
     "email": "romii.carranza@gmail.com",
     "password": "1234",
-    "type": "cliente"
+    "type": "admin"
   },
   {
     "id": 3,
