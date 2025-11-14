@@ -1,255 +1,144 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import FormField from "./FormField";
+import { useProductContext } from "../context/ProductContext";
+import { useParams } from "react-router-dom";
 
-function FormProduct() {
- // Estados del componente
-  const [producto, setProducto] = useState({nombre: '', precio: '', descripcion: '', categoria: '', avatar: ''});
-  const [errores, setErrores] = useState({});
-  const [cargando, setCargando] = useState(false);
+export default function FormProduct({ mode = "create"}) {
+  const { id } = useParams();
+const isEdit = Boolean(id);
 
-  // f(x) manejarCambios | inputs
-  const manejarCambio = (e) => {
-    const { name, value } = e.target;
-    
-    // Valida longitud max. descripción
-    if (name === 'descripcion' && value.length > 200) return;
-    
-    setProducto(prev => ({ ...prev, [name]: value }));
-    
-    // Limpiar error del campo si existe
-    if (errores[name]) {
-      setErrores(prev => ({ ...prev, [name]: '' }));
-    }
-  };
+  const { createProduct, updateProduct, getProductId, loading, error } = useProductContext();
 
-  // f(x) validarFormulario
-  const validarFormulario = () => {
-    const errorDeCarga = {};
+  const [formData, setFormData] = useState({
+    name: "",
+    price: "",
+    stock: "",
+    category: "",
+    image: "",
+    description: ""
+  });
 
-    // nombre
-    if (!producto.nombre.trim()) {
-      errorDeCarga.nombre = 'El nombre es obligatorio.';
+  const [validFields, setValidFields] = useState({});
+  const [loadingInitial, setLoadingInitial] = useState(true);
+if (!formData) return <p>Cargando...</p>
+  // AUTOCARGA al editar
+  useEffect(() => {
+    if (!isEdit) {
+      setLoadingInitial(false);
+      return;
     }
 
-    // precio
-    if (!producto.precio.trim()) {
-      errorDeCarga.precio = 'El precio es obligatorio.';
-    } else {
-      const precioLimpio = producto.precio.replace(/\./g, '').replace(',', '.');
-      const precioNumerico = parseFloat(precioLimpio);
-      
-      if (!/^[\d.,]+$/.test(producto.precio.replace(/\./g, ''))) {
-        errorDeCarga.precio = 'Solo números, puntos o comas.';
-      } else if (isNaN(precioNumerico)) {
-        errorDeCarga.precio = 'Precio no válido.';
-      } else if (precioNumerico <= 0) {
-        errorDeCarga.precio = 'Debe ser mayor a 0.';
+    const fetchData = async () => {
+      try {
+        const product = await getProductId(id);
+        setFormData(product);
+      } catch (err) {
+        console.error("Error cargando producto:", err);
+      } finally {
+        setLoadingInitial(false);
       }
-    }
+    };
 
-    // descripción
-    if (!producto.descripcion.trim()) {
-      errorDeCarga.descripcion = 'La descripción es obligatoria.';
-    } else if (producto.descripcion.length < 10) {
-      errorDeCarga.descripcion = 'Mínimo 10 caracteres.';
-    } else if (producto.descripcion.length > 200) {
-      errorDeCarga.descripcion = 'Máximo 200 caracteres.';
-    }
+    fetchData();
+  }, [isEdit, id]);
 
-    setErrores(errorDeCarga);
-    return Object.keys(errorDeCarga).length === 0;
+  // actualiza campos
+  const handleValidChange = (name, value, isValid) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setValidFields((prev) => ({ ...prev, [name]: isValid }));
   };
 
-  // f(x) para agregarProducto
-  const agregarProducto = async (producto) => {
-    try {
-      const productoEnviar = {
-        ...producto,
-        precio: producto.precio.replace(',', '.')
-      };
-
-      const respuesta = await fetch('https://68d482e3214be68f8c696ae2.mockapi.io/api/productos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(productoEnviar),
-      });
-
-      if (!respuesta.ok) throw new Error('Error al agregar el producto.');
-
-      const data = await respuesta.json();
-      alert('Producto agregado correctamente');
-      return data;
-    } catch (error) {
-      alert('Hubo un problema al agregar el producto.');
-      throw error;
-    }
-  };
-
-  // f(x) manejarEnvio
-  const manejarEnvio = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validar antes de enviar
-    if (!validarFormulario()) return;
 
-    setCargando(true);
+    const allValid = Object.values(validFields).every(Boolean);
+
+    if (!allValid) {
+      alert("Hay errores o campos incompletos");
+      return;
+    }
+
     try {
-      await agregarProducto(producto);
-      
-      // Limpiar formulario después del éxito
-      setProducto({nombre: '', precio: '', descripcion: '', categoria: '', avatar: ''});
-      setErrores({});
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      setCargando(false);
+      if (isEdit) {
+        await updateProduct( id, formData);
+        alert("Producto actualizado correctamente");
+      } else {
+        await createProduct( formData );
+        alert("Producto creado correctamente");
+      }
+    } catch {
+      alert("Error al guardar.");
     }
   };
 
-  // Renderizado del componente
+  if (loadingInitial) return <p>Cargando datos...</p>;
+
   return (
-    <form onSubmit={manejarEnvio} style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <h2>Agregar Producto</h2>
-      
-      {/* Campo Nombre */}
-      <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-          Nombre: *
-        </label>
-        <input
-          type="text"
-          name="nombre"
-          value={producto.nombre}
-          onChange={manejarCambio}
-          disabled={cargando}
-          style={{
-            width: '100%',
-            padding: '8px',
-            border: `1px solid ${errores.nombre ? 'red' : '#ccc'}`,
-            borderRadius: '4px'
-          }}
-          placeholder="Ingrese el nombre del producto"
-        />
-        {errores.nombre && <p style={{ color: 'red', margin: '5px 0', fontSize: '14px' }}>{errores.nombre}</p>}
-      </div>
+    <form onSubmit={handleSubmit}>
+      <h2>{isEdit ? "Editar Producto" : "Crear Producto"}</h2>
 
-      {/* Campo Precio */}
-      <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-          Precio: *
-        </label>
-        <input
-          type="text"
-          name="precio"
-          value={producto.precio}
-          onChange={manejarCambio}
-          disabled={cargando}
-          placeholder="Ej: 40.000 o 40.000,50"
-          inputMode="decimal"
-          style={{
-            width: '100%',
-            padding: '8px',
-            border: `1px solid ${errores.precio ? 'red' : '#ccc'}`,
-            borderRadius: '4px'
-          }}
-        />
-        <div style={{ fontSize: '12px', color: '#666', marginTop: '5px' }}>
-          Formato argentino: punto para miles, sin decimales.
-        </div>
-        {errores.precio && <p style={{ color: 'red', margin: '5px 0', fontSize: '14px' }}>{errores.precio}</p>}
-      </div>
+      <FormField
+        name="name"
+        label="Nombre"
+        required
+        check={["textShort"]}
+        value={formData.name}
+        onValidChange={handleValidChange}
+      />
 
-      {/* Campo Categoría */}
-      <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-          Categoría:
-        </label>
-        <input
-          type="text"
-          name="categoria"
-          value={producto.categoria}
-          onChange={manejarCambio}
-          disabled={cargando}
-          placeholder="Ej: Electrónica, Ropa, Hogar, etc."
-          style={{
-            width: '100%',
-            padding: '8px',
-            border: '1px solid #ccc',
-            borderRadius: '4px'
-          }}
-        />
-      </div>
+      <FormField
+        name="price"
+        label="Precio"
+        fieldType="number"
+        check={["price"]}
+        required
+        value={formData.price}
+        onValidChange={handleValidChange}
+      />
 
-      {/* Campo Avatar URL */}
-      <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-          Imagen (URL):
-        </label>
-        <input
-          type="text"
-          name="avatar"
-          value={producto.avatar}
-          onChange={manejarCambio}
-          disabled={cargando}
-          placeholder="https://ejemplo.com/avatar.jpg"
-          style={{
-            width: '100%',
-            padding: '8px',
-            border: '1px solid #ccc',
-            borderRadius: '4px'
-          }}
-        />
-      </div>
+      <FormField
+        name="stock"
+        label="Stock"
+        fieldType="number"
+        check={["number"]}
+        required
+        value={formData.stock}
+        onValidChange={handleValidChange}
+      />
 
-      {/* Campo Descripción */}
-      <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-          Descripción: *
-        </label>
-        <textarea
-          name="descripcion"
-          value={producto.descripcion}
-          onChange={manejarCambio}
-          rows="4"
-          disabled={cargando}
-          maxLength="200"
-          placeholder="Mínimo 10 caracteres, máximo 200 caracteres"
-          style={{
-            width: '100%',
-            padding: '8px',
-            border: `1px solid ${errores.descripcion ? 'red' : '#ccc'}`,
-            borderRadius: '4px',
-            resize: 'vertical'
-          }}
-        />
-        <div style={{
-          fontSize: '12px',
-          color: producto.descripcion.length > 200 ? 'red' : '#666',
-          marginTop: '5px'
-        }}>
-          {producto.descripcion.length}/200 caracteres
-        </div>
-        {errores.descripcion && (
-          <p style={{ color: 'red', margin: '5px 0', fontSize: '14px' }}>{errores.descripcion}</p>
-        )}
-      </div>
+      <FormField
+        name="category"
+        label="Categoría"
+        required
+        check={["textShort"]}
+        value={formData.category}
+        onValidChange={handleValidChange}
+      />
 
-      <button
-        type="submit"
-        disabled={cargando}
-        style={{
-          width: '100%',
-          padding: '12px',
-          backgroundColor: cargando ? '#ccc' : 'darkolivegreen',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          fontSize: '16px',
-          cursor: cargando ? 'not-allowed' : 'pointer'
-        }}
-      >
-        {cargando ? 'Agregando...' : 'Agregar Producto'}
+      <FormField
+        name="image"
+        label="URL de Imagen"
+        fieldType="url"
+        check={["url"]}
+        required
+        value={formData.image}
+        onValidChange={handleValidChange}
+      />
+
+      <FormField
+        name="description"
+        label="Descripción"
+        fieldType="text"
+        check={["nameLong"]}
+        value={formData.description}
+        onValidChange={handleValidChange}
+      />
+
+      <button type="submit" disabled={loading}>
+        {isEdit ? "Actualizar Producto" : "Crear Producto"}
       </button>
-      <p>(*) Campos obligatorios</p>
+
+      {error && <p style={{ color: "red" }}>⚠️ {error}</p>}
     </form>
   );
-} export default FormProduct;
+}

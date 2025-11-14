@@ -15,6 +15,7 @@ import Login from './pages/Login'
 import Payment from './pages/Payment'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './pages/ProtectedRouute'
+import ProductFormPage from "./pages/ProductFormPage";
 
 function App() {
 
@@ -38,7 +39,15 @@ function App() {
             <Route path="/dashboard" element={
                 <ProtectedRoute Admin={true}>
                   <Dashboard />
-                </ProtectedRoute>}/>
+                </ProtectedRoute> } />
+            <Route path="/dashboard/product/new"  element={
+              <ProtectedRoute Admin={true}>
+                <ProductFormPage mode="create" />
+              </ProtectedRoute>  } />
+            <Route path="/dashboard/product/edit/:id" element={
+              <ProtectedRoute Admin={true}>
+                <ProductFormPage mode="edit" />
+              </ProtectedRoute> } />
           </Routes>
           <Footer />
           </ProductProvider>

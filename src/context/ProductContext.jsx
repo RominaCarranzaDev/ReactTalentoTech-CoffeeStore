@@ -86,18 +86,20 @@ export function ProductProvider({ children }) {
         }
     };
 
-    const updateProduct = async (productoEditado) => {
-        try {
-            const data = await requestAPI(`${URL_PRODUCTS}/${productoEditado.id}`, "PUT", productoEditado);
-            setProductos((prev) =>
-                prev.map((p) => (p.id === productoEditado.id ? data : p))
-            );
-            return data;
-        } catch (err) {
-            console.error("Error al actualizar producto:", err);
-        throw err;
-        }
-    };
+    const updateProduct = async (id, productoEditado) => {
+  try {
+    const data = await requestAPI(`${URL_PRODUCTS}/${id}`, "PUT", productoEditado);
+
+    setProductos(prev =>
+      prev.map(p => (p.id === id ? data : p))
+    );
+
+    return data;
+  } catch (err) {
+    console.error("Error al actualizar producto:", err);
+    throw err;
+  }
+};
     const deleteProduct = async (id) => {
         try {
             await requestAPI(`${URL_PRODUCTS}/${id}`, "DELETE");
