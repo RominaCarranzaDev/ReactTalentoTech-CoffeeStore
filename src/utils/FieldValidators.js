@@ -13,7 +13,7 @@ export default function FieldValidator() {
     },
 
     textLong(value) {
-      const maxValue = 250
+      const maxValue = 150
       return (value.length > maxValue) ? { valid: false, error: `Máximo ${maxValue} caracteres`  } 
       : { valid: true, value};
     },
@@ -61,7 +61,7 @@ export default function FieldValidator() {
         : { valid: false, error: "Correo electrónico inválido" };
     },
 
-    password(value, { min = 6, max = 18 } = {}) {
+    password(value, { min = 0, max = 18 } = {}) {
       if (!value.trim()) return { valid: false, error: "Campo obligatorio" };
       if (value.length < min) return { valid: false, error: `Debe tener al menos ${min} caracteres` };
       if (value.length > max) return { valid: false, error: `Máximo ${max} caracteres` };

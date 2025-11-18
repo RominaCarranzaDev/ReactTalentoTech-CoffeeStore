@@ -1,18 +1,18 @@
 export const Productos = [
   {
-    "id": 1,
+    "id": "1",
     "name": "Café Cappuccino",
-    "price": 34.99,
-    "stock": 243,
+    "price": 2500.99,
+    "stock": "240",
     "category": "beverage",
-    "description": "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
+    "description": "Morbi porttitor lorem id ligula. Susus, auctor sed, tristique in, tempus sit amet, sem.Fusce consequat. Nulla nisl. Nunc nisl.",
     "image": "https://i.pinimg.com/736x/fc/23/1c/fc231cf54ee082829916de31a9b233c0.jpg",
     "created_date": "2025-09-18"
   },
   {
-    "id": 2,
+    "id": "2",
     "name": "Café Latte",
-    "price": 2.99,
+    "price": 1250.99,
     "stock": 109,
     "category": "beverage",
     "description": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
@@ -20,9 +20,9 @@ export const Productos = [
     "created_date": "2025-09-27"
   },
   {
-    "id": 3,
+    "id": "3",
     "name": "Latte Macchiato",
-    "price": 4.99,
+    "price": 2145.99,
     "stock": 278,
     "category": "beverage",
     "description": "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
@@ -30,9 +30,9 @@ export const Productos = [
     "created_date": "2025-09-08"
   },
   {
-    "id": 4,
+    "id": "4",
     "name": "Latte Moca",
-    "price": 59.99,
+    "price": 1595.99,
     "stock": 158,
     "category": "beverage",
     "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
@@ -40,9 +40,9 @@ export const Productos = [
     "created_date": "2025-09-23"
   },
   {
-    "id": 5,
+    "id": "5",
     "name": "Caramel Macchiato",
-    "price": 34.99,
+    "price": 1340.99,
     "stock": 171,
     "category": "beverage",
     "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
@@ -50,9 +50,9 @@ export const Productos = [
     "created_date": "2025-09-28"
   },
   {
-    "id": 6,
+    "id": "6",
     "name": "Café Expreso",
-    "price": 199.99,
+    "price": 1992.99,
     "stock": 107,
     "category": "beverage",
     "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
@@ -60,9 +60,9 @@ export const Productos = [
     "created_date": "2025-09-21"
   },
   {
-    "id": 7,
+    "id": "7",
     "name": "Rolls",
-    "price": 9.99,
+    "price": 1955.99,
     "stock": 300,
     "category": "bakery",
     "description": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
@@ -70,9 +70,9 @@ export const Productos = [
     "created_date": "2025-09-27"
   },
   {
-    "id": 8,
+    "id": "8",
     "name": "Croissants",
-    "price": 69.99,
+    "price": 1692.99,
     "stock": 199,
     "category": "dessert",
     "description": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
@@ -80,9 +80,9 @@ export const Productos = [
     "created_date": "2025-09-04"
   },
   {
-    "id": 9,
+    "id": "9",
     "name": "Muffin Chocolate",
-    "price": 12.99,
+    "price": 1255.99,
     "stock": 194,
     "category": "dessert",
     "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
@@ -90,9 +90,9 @@ export const Productos = [
     "created_date": "2025-09-23"
   },
   {
-    "id": 10,
+    "id": "10",
     "name": "Muffin Vanilla",
-    "price": 4.99,
+    "price": 2452.99,
     "stock": 230,
     "category": "dessert",
     "description": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
@@ -100,9 +100,9 @@ export const Productos = [
     "created_date": "2025-09-13"
   },
   {
-    "id": 11,
+    "id": "11",
     "name": "Muffin Red Velvet Frutilla",
-    "price": 2.49,
+    "price": 1255.49,
     "stock": 122,
     "category": "bakery",
     "description": "In congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
@@ -110,9 +110,9 @@ export const Productos = [
     "created_date": "2025-09-30"
   },
   {
-    "id": 12,
+    "id": "12",
     "name": "Creamy Chocolate Mousse Cake",
-    "price": 29.99,
+    "price": 1295.99,
     "stock": 101,
     "category": "dessert",
     "description": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
@@ -120,9 +120,9 @@ export const Productos = [
     "created_date": "2025-09-03"
   },
   {
-    "id": 13,
+    "id": "13",
     "name": "Cheesecake Mora",
-    "price": 49.99,
+    "price": 1495.99,
     "stock": 159,
     "category": "dessert",
     "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
@@ -130,9 +130,9 @@ export const Productos = [
     "created_date": "2025-09-09"
   },
   {
-    "id": 14,
+    "id": "14",
     "name": "Cheesecake Frutilla",
-    "price": 5.49,
+    "price": 1552.49,
     "stock": 249,
     "category": "dessert",
     "description": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
@@ -140,9 +140,9 @@ export const Productos = [
     "created_date": "2025-09-14"
   },
   {
-    "id": 15,
+    "id": "15",
     "name": "Lemon Pie",
-    "price": 3.99,
+    "price": 2355.99,
     "stock": 173,
     "category": "dessert",
     "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
@@ -150,9 +150,9 @@ export const Productos = [
     "created_date": "2025-09-07"
   },
   {
-    "id": 16,
+    "id": "16",
     "name": "searsmanf",
-    "price": 4.99,
+    "price": 1455.99,
     "stock": 161,
     "category": "beverage",
     "description": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
@@ -160,9 +160,9 @@ export const Productos = [
     "created_date": "2025-09-20"
   },
   {
-    "id": 17,
+    "id": "17",
     "name": "amuggletong",
-    "price": 6.99,
+    "price": 1655.99,
     "stock": 153,
     "category": "dessert",
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
@@ -170,9 +170,9 @@ export const Productos = [
     "created_date": "2025-09-05"
   },
   {
-    "id": 18,
+    "id": "18",
     "name": "fwakelingh",
-    "price": 1.99,
+    "price": 1523.99,
     "stock": 236,
     "category": "bakery",
     "description": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
@@ -180,9 +180,9 @@ export const Productos = [
     "created_date": "2025-09-09"
   },
   {
-    "id": 19,
+    "id": "19",
     "name": "hflavertyi",
-    "price": 69.99,
+    "price": 1695.99,
     "stock": 289,
     "category": "dessert",
     "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
@@ -190,9 +190,9 @@ export const Productos = [
     "created_date": "2025-09-22"
   },
   {
-    "id": 20,
+    "id": "20",
     "name": "umudlej",
-    "price": 89.99,
+    "price": 1189.99,
     "stock": 252,
     "category": "beverage",
     "description": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.",
@@ -200,9 +200,9 @@ export const Productos = [
     "created_date": "2025-09-04"
   },
   {
-    "id": 21,
+    "id": "21",
     "name": "kpetrollik",
-    "price": 2.99,
+    "price": 2512.99,
     "stock": 226,
     "category": "dessert",
     "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
@@ -210,9 +210,9 @@ export const Productos = [
     "created_date": "2025-09-07"
   },
   {
-    "id": 22,
+    "id": "22",
     "name": "ohoferl",
-    "price": 27.99,
+    "price": 2752.99,
     "stock": 265,
     "category": "dessert",
     "description": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
@@ -220,9 +220,9 @@ export const Productos = [
     "created_date": "2025-09-24"
   },
   {
-    "id": 23,
+    "id": "23",
     "name": "crobbekem",
-    "price": 12.99,
+    "price": 5125.99,
     "stock": 234,
     "category": "beverage",
     "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
@@ -230,9 +230,9 @@ export const Productos = [
     "created_date": "2025-09-05"
   },
   {
-    "id": 24,
+    "id": "24",
     "name": "gturbernn",
-    "price": 5.99,
+    "price": 1522.99,
     "stock": 248,
     "category": "dessert",
     "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
@@ -240,9 +240,9 @@ export const Productos = [
     "created_date": "2025-09-09"
   },
   {
-    "id": 25,
+    "id": "25",
     "name": "beakleeo",
-    "price": 5.49,
+    "price": 1555.49,
     "stock": 289,
     "category": "bakery",
     "description": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
@@ -250,9 +250,9 @@ export const Productos = [
     "created_date": "2025-09-25"
   },
   {
-    "id": 26,
+    "id": "26",
     "name": "kreicheltp",
-    "price": 3.49,
+    "price": 1553.49,
     "stock": 239,
     "category": "dessert",
     "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
@@ -260,9 +260,9 @@ export const Productos = [
     "created_date": "2025-09-12"
   },
   {
-    "id": 27,
+    "id": "27",
     "name": "wdilowayq",
-    "price": 11.99,
+    "price": 1152.99,
     "stock": 169,
     "category": "dessert",
     "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
@@ -270,9 +270,9 @@ export const Productos = [
     "created_date": "2025-09-22"
   },
   {
-    "id": 28,
+    "id": "28",
     "name": "kcavillr",
-    "price": 199.99,
+    "price": 1599.99,
     "stock": 120,
     "category": "bakery",
     "description": "Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
@@ -280,9 +280,9 @@ export const Productos = [
     "created_date": "2025-09-19"
   },
   {
-    "id": 29,
+    "id": "29",
     "name": "ckeirs",
-    "price": 12.99,
+    "price": 1212.99,
     "stock": 264,
     "category": "bakery",
     "description": "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
@@ -290,9 +290,9 @@ export const Productos = [
     "created_date": "2025-09-09"
   },
   {
-    "id": 30,
+    "id": "30",
     "name": "bsouthwickt",
-    "price": 4.29,
+    "price": 4125.29,
     "stock": 158,
     "category": "beverage",
     "description": "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
@@ -300,204 +300,194 @@ export const Productos = [
     "created_date": "2025-09-18"
   },
   {
-    "createdDate": "2025-10-02T15:13:27.475Z",
-    "name": "Elegant Granite Keyboard",
-    "stock": "791670684",
-    "price": 845.2,
-    "category": "Generic",
-    "description": "Vehemens curriculum vespillo varius ager praesentium quis. Tamquam colligo arcus. Occaecati voluptatum adversus ciminatio avaritia ambitus suscipit coepi.",
-    "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/31.jpg",
-    "id": "31"
-  },
-  {
-    "createdDate": "2025-10-02T20:52:47.453Z",
+    "id": "32",
     "name": "Ergonomic Bronze Towels",
-    "stock": "886636287",
     "price": 960.59,
+    "stock": 887,
     "category": "Intelligent",
     "description": "Carus vis administratio solitudo cupressus adiuvo viriliter. Laudantium solus solutio decipio quibusdam aspicio tenetur crebro. Terebro sequi villa coma tribuo.",
     "image": "https://avatars.githubusercontent.com/u/32849736",
-    "id": "32"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T22:01:52.367Z",
+    "id": "33",
     "name": "Ergonomic Bronze Salad",
-    "stock": "589035127",
+    "stock": 527,
     "price": 633.14,
     "category": "Tasty",
     "description": "Cubo tenax comis undique vigor suppellex beneficium bene usus pauper. Curatio cras subseco solutio id callide. Supra depopulo temptatio confugo.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/59.jpg",
-    "id": "33"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T08:59:03.387Z",
+    "id": "34",
     "name": "Licensed Granite Shoes",
-    "stock": "130603270",
+    "stock": 13270,
     "price": 473.45,
     "category": "Rustic",
     "description": "Volup ipsum corpus tabula crapula vado aegre denuo capio asperiores. Pariatur cunctatio adfero arcesso statim tripudio ciminatio ascit. Claudeo attero cubitum quisquam.",
     "image": "https://avatars.githubusercontent.com/u/24600999",
-    "id": "34"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T19:00:08.016Z",
+    "id": "35",
     "name": "Refined Bamboo Pizza",
-    "stock": "126319206",
+    "stock": 126,
     "price": 474.05,
     "category": "Fresh",
     "description": "Distinctio in arcus culpo tempus. Adeptio audeo stella beneficium comitatus pecco sulum crapula molestias. Sumo delectus amor arcesso summisse demonstro aureus corrigo.",
     "image": "https://avatars.githubusercontent.com/u/13092658",
-    "id": "35"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T18:11:32.238Z",
+    "id": "36",
     "name": "Fantastic Rubber Salad",
-    "stock": "659945574",
+    "stock": 674,
     "price": 219.69,
     "category": "Elegant",
     "description": "Solitudo vulariter angustus trado tres spiculum crebro verumtamen distinctio tum. Infit amplus aequitas ulterius. Subito cognomen eveniet abduco.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/26.jpg",
-    "id": "36"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T09:44:29.744Z",
+    "id": "37",
     "name": "Unbranded Ceramic Fish",
-    "stock": "737387397",
+    "stock": 77,
     "price": 410.69,
     "category": "Sleek",
     "description": "Vaco acies tenus sum aestus illo utique videlicet. Animi amplexus tyrannus crinis supplanto. Esse tandem appello utpote celo.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/64.jpg",
-    "id": "37"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T02:40:40.018Z",
+    "id": "38",
     "name": "Elegant Steel Shoes",
-    "stock": "735065611",
+    "stock": 71,
     "price": 405.09,
     "category": "Practical",
     "description": "Minima spero sub natus textor sequi stips. Tibi alveus convoco suscipio vado. Veritatis tolero amiculum reiciendis volo vilis argumentum sublime.",
     "image": "https://avatars.githubusercontent.com/u/60552179",
-    "id": "38"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T23:41:50.456Z",
+    "id": "39",
     "name": "Luxurious Concrete Bike",
-    "stock": "829648944",
+    "stock": 829648944,
     "price": 4.79,
     "category": "Awesome",
     "description": "Adfectus adamo vomer defendo degenero ex allatus. Beneficium amicitia crepusculum. Conspergo agnitio bellum.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/0.jpg",
-    "id": "39"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T09:57:37.622Z",
+    "id": "40",
     "name": "Fantastic Rubber Pizza",
-    "stock": "327271350",
+    "stock": 320,
     "price": 345.86,
     "category": "Refined",
     "description": "Congregatio adeptio vulnero degero depromo sub caterva demergo suadeo. Appositus circumvenio tenuis comedo tabula cimentarius. Caste tonsor acceptus asporto tempora aedificium delego certe incidunt.",
     "image": "https://avatars.githubusercontent.com/u/37171090",
-    "id": "40"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T18:12:13.146Z",
+    "id": "41",
     "name": "Bespoke Ceramic Hat",
-    "stock": "145510510",
+    "stock": 10,
     "price": 180.39,
     "category": "Unbranded",
     "description": "Vita sollers iusto adduco. Conventus usitas assumenda aequitas cogo compello victus facere. Defendo corona coaegresco urbs coerceo timor ex validus subvenio amitto.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/74.jpg",
-    "id": "41"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T22:48:21.081Z",
+    "id": "42",
     "name": "Luxurious Concrete Gloves",
-    "stock": "875256199",
+    "stock": 89,
     "price": 774.99,
     "category": "Gorgeous",
     "description": "Volaticus terreo illo ventito. Vomica quos cimentarius ter cupiditate corpus uxor defleo culpo perferendis. Conturbo sono cognomen cultellus confero decerno expedita testimonium vulariter.",
     "image": "https://avatars.githubusercontent.com/u/90217560",
-    "id": "42"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T17:27:24.358Z",
+    "id": "43",
     "name": "Practical Granite Cheese",
-    "stock": "071252214",
+    "stock": 71252214,
     "price": 152.95,
     "category": "Frozen",
     "description": "Admoveo repellat subseco. Tener ver stipes solio copia tenuis vae. Vos auxilium cupiditas tunc accusantium volup decretum bis solium vicinus.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/15.jpg",
-    "id": "43"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T07:54:30.197Z",
+    "id": "44",
     "name": "Modern Metal Shoes",
-    "stock": "101308041",
-    "price": 36.49,
+    "stock": 101,
+    "price": 3236.49,
     "category": "Elegant",
     "description": "Cultura quidem depulso. Crastinus coruscus correptius sunt debitis adficio decimus. Utroque quaerat sulum aut aestivus congregatio vero sortitus cribro aptus.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/37.jpg",
-    "id": "44"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T23:57:05.571Z",
+    "id": "45",
     "name": "Handcrafted Silk Shirt",
-    "stock": "371652129",
+    "stock": 379,
     "price": 788.9,
     "category": "Modern",
     "description": "Ullus cito audentia deprimo. Triduana depromo vito maxime. Agnosco balbus infit toties dicta strues.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/93.jpg",
-    "id": "45"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T02:46:59.101Z",
+    "id": "46 ",
     "name": "Fantastic Rubber Cheese",
-    "stock": "931804016",
+    "stock": 916,
     "price": 637.29,
     "category": "Licensed",
     "description": "Consuasor ocer ustilo corona vos decipio deorsum in angelus amiculum. Stabilis turpis terminatio vigilo cavus. Clementia tot sophismata bis verto alter audacia.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/54.jpg",
-    "id": "46"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T07:42:21.789Z",
+    "id": "47",
     "name": "Modern Aluminum Sausages",
-    "stock": "831487818",
+    "stock": 831487818,
     "price": 66.49,
     "category": "Electronic",
     "description": "Acsi creta contigo comitatus degusto nostrum comes subito torrens. Vulariter vehemens suspendo pecus agnitio adimpleo vacuus aeneus. Aegrus canis adipiscor ceno tero delibero.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/28.jpg",
-    "id": "47"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T04:33:45.559Z",
+    "id": "48",
     "name": "Fresh Plastic Chair",
-    "stock": "088297408",
+    "stock": 88297408,
     "price": 385.73,
     "category": "Electronic",
     "description": "Clementia accedo balbus absorbeo. Vinum pariatur voluptates alveus cenaculum deripio vorax comes cura. Abstergo ventosus atrox ultra bis consuasor crastinus accommodo deripio voluptatum.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/2.jpg",
-    "id": "48"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T08:19:02.170Z",
+    "id": "49",
     "name": "Rustic Silk Tuna",
-    "stock": "799949029",
+    "stock": 799949029,
     "price": 13.15,
     "category": "Fresh",
     "description": "Minima caveo tracto adduco. Placeat esse amplus audax adfectus. Patria adulescens vorago nostrum usus tergum.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/79.jpg",
-    "id": "49"
+    "created_date": "2025-10-02"
   },
   {
-    "createdDate": "2025-10-02T07:08:35.658Z",
+    "id": "50",
     "name": "Modern Plastic Gloves",
-    "stock": "182950230",
+    "stock": 182950230,
     "price": 22.35,
     "category": "Frozen",
     "description": "Convoco considero accedo aspicio decet. Infit earum calco volutabrum minima capio magni. Concedo cilicium truculenter pectus ducimus.",
     "image": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/25.jpg",
-    "id": "50"
+    "created_date": "2025-10-02"
   }
 ]
 

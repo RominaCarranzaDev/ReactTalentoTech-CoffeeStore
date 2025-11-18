@@ -21,8 +21,8 @@ const isEdit = Boolean(id);
   const [validFields, setValidFields] = useState({});
   const [loadingInitial, setLoadingInitial] = useState(true);
 if (!formData) return <p>Cargando...</p>
-  // AUTOCARGA al editar
-  useEffect(() => {
+
+useEffect(() => {
     if (!isEdit) {
       setLoadingInitial(false);
       return;
@@ -79,26 +79,30 @@ if (!formData) return <p>Cargando...</p>
 
       <FormField
         name="name"
-        label="Nombre"
+        id="name"
+        label="Nombre: "
         required
         check={["textShort"]}
         value={formData.name}
         onValidChange={handleValidChange}
+        autoFocus
       />
 
       <FormField
         name="price"
-        label="Precio"
+        id="price"
+        label="Precio: "
         fieldType="number"
         check={["price"]}
         required
+        placeholder="999,99"
         value={formData.price}
         onValidChange={handleValidChange}
       />
 
       <FormField
         name="stock"
-        label="Stock"
+        label="Stock: "
         fieldType="number"
         check={["number"]}
         required
@@ -107,38 +111,49 @@ if (!formData) return <p>Cargando...</p>
       />
 
       <FormField
+        fieldType="select"
         name="category"
-        label="Categoría"
+        id="category"
+        label="Categoría: "
         required
-        check={["textShort"]}
         value={formData.category}
         onValidChange={handleValidChange}
+        placeholder="Seleccione ... "
+        options={[
+                { value: "bebida", label: "Bebida" },
+                { value: "postre", label: "Postre" },
+                { value: "sandwich", label: "Sandwich" },
+            ]}
       />
 
       <FormField
-        name="image"
-        label="URL de Imagen"
         fieldType="url"
+        name="image"
+        label="URL de Imagen:"
         check={["url"]}
         required
         value={formData.image}
         onValidChange={handleValidChange}
+        placeholder="https://sitio-ejemplo.com/foto.jpg"
       />
 
       <FormField
+        fieldType="textarea"
         name="description"
+        id="description"
         label="Descripción"
-        fieldType="text"
         check={["nameLong"]}
         value={formData.description}
         onValidChange={handleValidChange}
+        placeholder="Ingrese una breve descripción. Máximo de 150 caracteres."
+        maxLength={150}
       />
 
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={loading} className="btn">
         {isEdit ? "Actualizar Producto" : "Crear Producto"}
       </button>
 
-      {error && <p style={{ color: "red" }}>⚠️ {error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </form>
   );
 }

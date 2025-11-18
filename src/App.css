@@ -272,3 +272,8 @@ nav i {
 
   
 }
+.counter-character {
+  float: inline-end;
+  font-size: small;
+  color: grey;
+  }

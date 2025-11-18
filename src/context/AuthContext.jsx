@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Users } from '../dataJSON/Users';
+import { ENDPOINT } from "../config/AppConfig";
 
 export const AuthContext = createContext();
-
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const URL_USERS = ENDPOINT.usuarios
 
   useEffect(() => {
     const storedUser = localStorage.getItem("authUser");
@@ -22,18 +23,24 @@ export function AuthProvider({ children }) {
       return `fake-token-${userId}-${username}`;
   };
 
-
-  const iniciarSesion = (email, password) => {
-    const foundUser = Users.find((u) => u.email === email && u.password === password);
-
-    if (foundUser) {
+  const iniciarSesion = async (email, password) => {
+    
+    try {
+      const data = await fetch(URL_USERS);
+      const users = await data.json();
+      const foundUser = users.find(
+        u => u.email === email && u.password === password
+        );
+      if (!foundUser) {
+      return { success: false, message: "Correo o contraseña incorrectos" };
+      }
+      
       const userData = {
-        name: foundUser.fullname,
-        email: foundUser.email,
-        type: foundUser.type
+      name: foundUser.fullname,
+      email: foundUser.email,
+      rol: foundUser.rol,
       };
 
-      // Crear token simulado
       const fakeToken = crearFakeToken(foundUser.id, foundUser.fullname);
 
       localStorage.setItem("authUser", JSON.stringify(userData));
@@ -42,11 +49,12 @@ export function AuthProvider({ children }) {
       setUser(userData);
       setToken(fakeToken);
 
-      return { success: true, user: userData, token: fakeToken };
+        return { success: true, user: userData, token: fakeToken };
+      } catch (err) {
+      console.error("Error al iniciar sesion:", err);
+      return { success: false, message: "Error inesperado al iniciar sesión" };
+      }
     }
-    return { success: false, message: "Correo o contraseña incorrectos" };
-  };
-
 
   const cerrarSesion = () => {
     localStorage.removeItem("authUser");
@@ -55,12 +63,43 @@ export function AuthProvider({ children }) {
     setToken(null);
   };
 
+   const crearUsuario = async (newUser) => {
+    try {
+      const res = await fetch(URL_USERS);
+      const users = await res.json();
 
+      if (users.some(u => u.email === newUser.email)) {
+        return { success: false, message: "El email ya está registrado" };
+      }
+
+      const userToCreate = {
+        fullname: newUser.nombre,
+        email: newUser.email,
+        password: newUser.password,
+        rol: "client",
+      };
+
+      const post = await fetch(URL_USERS, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userToCreate),
+      });
+
+      const createdUser = await post.json();
+
+      return { success: true, user: createdUser };
+
+    } catch (err) {
+      console.error("Error creando usuario:", err);
+      return { success: false, message: "Error de conexión con la API" };
+    }
+  };
   const value = {
     user,
     token,
     iniciarSesion,
     cerrarSesion,
+    crearUsuario,
     isAuthenticated: !!user && !!token,
   };
 

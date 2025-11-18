@@ -9,7 +9,7 @@ function ProtectedRoute({ children, Admin= false }) {
   if (!user) {
     return <Navigate to="/login" state={location.state} replace />;
   }
-  if (Admin && user.type !== 'admin'){
+  if (Admin && user.rol !== 'admin'){
     return <Navigate to='/store' />
   }
   return children;

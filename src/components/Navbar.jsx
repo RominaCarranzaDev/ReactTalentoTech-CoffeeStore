@@ -27,7 +27,7 @@ function Navbar() {
                     <li><Link to='/store' onClick={() => setOpen(false)}><i className='bx bx-store'></i>Tienda</Link></li>
                     <li><Link to='/contact-us' onClick={() => setOpen(false)}><i className='bx bx-phone'></i>Contacto</Link></li>
                     <li><Link to='/cart' onClick={() => setOpen(false)}><i className='bx bx-shopping-bag'></i>Carrito</Link></li>
-                    {user && user.type == 'admin' ? <li><Link to='/dashboard' className={currentPath === '/dashboard' ? "active-link" : ""}>Admin</Link></li> : '' }
+                    {user && user.rol == 'admin' ? <li><Link to='/dashboard' className={currentPath === '/dashboard' ? "active-link" : ""}>Admin</Link></li> : '' }
                     <li>{isAuthenticated ? ( 
                        <><span>Hola, {user.name}</span>
                         <button onClick={handleLogout }><i className='bx bx-arrow-out-left-square-half'  ></i> </button> </>
@@ -43,7 +43,7 @@ function Navbar() {
                 <li><Link to='/contact-us' className={currentPath === "/contact-us" ? "active-link" : ""}><i className='bx bx-phone'></i>Contacto</Link></li>
                 <li><Link to='/cart' className={currentPath === "/cart" ? "active-link notsub" : "notsub"} style={{position:'relative'}}>
                     <i className='bx bx-shopping-bag'>{carrito.length > 0 && (<span className='count-cart-nav'>{totalProductos}</span>)}</i></Link></li>
-                {user && user.type == 'admin' ? <li><Link to='/dashboard' className={currentPath === '/dashboard' ? "active-link" : ""}>Admin</Link></li> : '' }
+                {user && user.rol == 'admin' ? <li><Link to='/dashboard' className={currentPath === '/dashboard' ? "active-link" : ""}>Admin</Link></li> : '' }
                 <li>
                     {isAuthenticated ? ( 
                        <><p>Hola, {user.name}</p>

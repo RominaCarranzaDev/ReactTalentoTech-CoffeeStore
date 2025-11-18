@@ -1,72 +1,72 @@
 export const Users = [
   {
-    "id": 1,
+    "id": "1",
     "fullname": "Talento Tech",
-    "email": "admin@gmail.com",
+    "email": "admin@email.com",
     "password": "admin1234",
-    "type": "admin"
+    "rol": "admin"
   },
   {
-    "id": 2,
+    "id": "2",
     "fullname": "Romina",
     "email": "romii.carranza@gmail.com",
     "password": "1234",
-    "type": "admin"
+    "rol": "admin"
   },
   {
-    "id": 3,
+    "id": "3",
     "fullname": "Trstram",
     "email": "totridge2@patch.com",
     "password": "uV3sxVZscMQwH",
-    "type": "cliente"
+    "rol": "cliente"
   },
   {
-    "id": 4,
+    "id": "4",
     "fullname": "Marcy",
-    "email": "mdougan3@delicious.com",
+    "email": "mdougan3@gmail.com",
     "password": "dY8frmVMC2pR",
-    "type": "cliente"
+    "rol": "cliente"
   },
   {
-    "id": 5,
+    "id":"5",
     "fullname": "Bessie",
-    "email": "bmcmorran4@wired.com",
+    "email": "bmcmorran4@gmail.com",
     "password": "gD57LdsjD4cd",
-    "type": "cliente"
+    "rol": "cliente"
   },
   {
-    "id": 6,
+    "id": "6",
     "fullname": "Clem",
     "email": "cstoad5@columbia.edu",
     "password": "oG4Wp0lS",
-    "type": "admin"
+    "rol": "admin"
   },
   {
-    "id": 7,
+    "id": "7",
     "fullname": "Cammie",
     "email": "cfuzzens6@pcworld.com",
     "password": "uB2HCqLjL",
-    "type": "cliente"
+    "rol": "cliente"
   },
   {
-    "id": 8,
+    "id": "8",
     "fullname": "Marline",
-    "email": "mgiovannoni7@skyrock.com",
+    "email": "mgiovannoni7@gmail.com",
     "password": "aX58dqKrV",
-    "type": "cliente"
+    "rol": "cliente"
   },
   {
-    "id": 9,
+    "id": "9",
     "fullname": "Manny",
     "email": "mdykins8@msn.com",
     "password": "pK3AMH",
-    "type": "admin"
+    "rol": "admin"
   },
   {
-    "id": 10,
+    "id":"10",
     "fullname": "Mignon",
     "email": "mjarrold9@dell.com",
     "password": "yY7TcIf",
-    "type": "cliente"
+    "rol": "cliente"
   }
 ]

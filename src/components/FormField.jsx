@@ -6,6 +6,8 @@ function FormField({ fieldType = "text", name, id, label, options = [], check = 
     const [error, setError] = useState("");
     const [checked, setChecked] = useState(false); 
     const [touched, setTouched] = useState(false);
+    const [charCount, setCharCount] = useState(0);
+
     const validators = FieldValidator();
 
     const validateValue = (val) => {
@@ -97,11 +99,24 @@ function FormField({ fieldType = "text", name, id, label, options = [], check = 
             )}
 
         {/* Renderizado condicional */}
-        {fieldType === "textarea" ? (
-            <textarea {...commonProps} rows={attributes.row || 4}></textarea>
+            {fieldType === "textarea" ? (
+            <div className="textarea-group" style={{ position: "relative" }}>
+                <textarea
+                {...commonProps}
+                rows={attributes.rows || 3}
+                maxLength={attributes.maxLength || 120}
+                onChange={(e) => {
+                    handleChange(e);
+                    setCharCount(e.target.value.length);
+                }}
+                ></textarea>
+                <span className='counter-character' >
+                {charCount} / {attributes.maxLength || 120}
+                </span>
+            </div>
             ) : fieldType === "select" ? (
             <select {...commonProps} >
-                <option value="">Seleccione...</option>
+                <option value="" disabled>Seleccione una opción...</option>
                 {options?.map((opt) => (
                     <option key={opt.value || opt} value={opt.value || opt}>
                     {opt.label || opt}
