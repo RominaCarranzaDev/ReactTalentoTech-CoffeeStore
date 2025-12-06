@@ -15,7 +15,9 @@ import Login from './pages/Login'
 import Payment from './pages/Payment'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './pages/ProtectedRouute'
-import ProductFormPage from "./pages/ProductFormPage";
+import ProductFormPage from './pages/ProductFormPage';
+import { ToastContainer } from 'react-toastify' ;
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
@@ -49,10 +51,21 @@ function App() {
                 <ProductFormPage mode="edit" />
               </ProtectedRoute> } />
           </Routes>
+          < ToastContainer 
+            position="bottom-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            /> 
           <Footer />
           </ProductProvider>
         </CartProvider>
       </AuthProvider>
+      
     </>
   )
 }

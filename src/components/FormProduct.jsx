@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import FormField from "./FormField";
 import { useProductContext } from "../context/ProductContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
+import FormField from "./FormField";
+import Loading from "./Loading";
+import Btn from "./Btn";
+import { toast } from "react-toastify"; 
 
-export default function FormProduct({ mode = "create"}) {
+export default function FormProduct() {
   const { id } = useParams();
-const isEdit = Boolean(id);
+  const isEdit = Boolean(id);
+  const navigate = useNavigate();
 
   const { createProduct, updateProduct, getProductId, loading, error } = useProductContext();
 
@@ -20,29 +24,27 @@ const isEdit = Boolean(id);
 
   const [validFields, setValidFields] = useState({});
   const [loadingInitial, setLoadingInitial] = useState(true);
-if (!formData) return <p>Cargando...</p>
+  if (!formData) return <Loading />
 
-useEffect(() => {
+  useEffect(() => {
     if (!isEdit) {
       setLoadingInitial(false);
       return;
+  }
+
+  const fetchData = async () => {
+    try {
+      const product = await getProductId(id);
+      setFormData(product);
+    } catch (err) {
+      console.error("Error cargando producto:", err);
+    } finally {
+      setLoadingInitial(false);
     }
-
-    const fetchData = async () => {
-      try {
-        const product = await getProductId(id);
-        setFormData(product);
-      } catch (err) {
-        console.error("Error cargando producto:", err);
-      } finally {
-        setLoadingInitial(false);
-      }
-    };
-
+  };
     fetchData();
   }, [isEdit, id]);
 
-  // actualiza campos
   const handleValidChange = (name, value, isValid) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     setValidFields((prev) => ({ ...prev, [name]: isValid }));
@@ -51,31 +53,40 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const allValid = Object.values(validFields).every(Boolean);
+    const allValid = Object.values(validFields).every(v => v === true);
 
     if (!allValid) {
-      alert("Hay errores o campos incompletos");
+      toast.error("Hay campos incompletos o con error. Intentalo nuevamente.");
       return;
     }
 
     try {
       if (isEdit) {
         await updateProduct( id, formData);
-        alert("Producto actualizado correctamente");
+        toast.success("Producto actualizado correctamente");
+        navigate('/dashboard')
       } else {
-        await createProduct( formData );
-        alert("Producto creado correctamente");
+          await createProduct( formData );
+          toast.success("Producto creado correctamente");
+          setFormData({
+            name: "",
+            price: "",
+            stock: "",
+            category: "",
+            image: "",
+            description: ""
+          })
       }
     } catch {
-      alert("Error al guardar.");
+      toast.error("Error al guardar.");
     }
   };
 
-  if (loadingInitial) return <p>Cargando datos...</p>;
+  if (loadingInitial) return <Loading />;
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>{isEdit ? "Editar Producto" : "Crear Producto"}</h2>
+      <h2 className="title">{isEdit ? "Editar Producto" : "Crear Nuevo Producto"}</h2>
 
       <FormField
         name="name"
@@ -84,7 +95,7 @@ useEffect(() => {
         required
         check={["textShort"]}
         value={formData.name}
-        onValidChange={handleValidChange}
+        onValid={handleValidChange}
         autoFocus
       />
 
@@ -97,17 +108,17 @@ useEffect(() => {
         required
         placeholder="999,99"
         value={formData.price}
-        onValidChange={handleValidChange}
+        onValid={handleValidChange}
       />
 
       <FormField
         name="stock"
         label="Stock: "
         fieldType="number"
-        check={["number"]}
+        check={["numberPositive"]}
         required
         value={formData.stock}
-        onValidChange={handleValidChange}
+        onValid={handleValidChange}
       />
 
       <FormField
@@ -117,10 +128,10 @@ useEffect(() => {
         label="Categoría: "
         required
         value={formData.category}
-        onValidChange={handleValidChange}
-        placeholder="Seleccione ... "
+        onValid={handleValidChange}
         options={[
-                { value: "bebida", label: "Bebida" },
+                { value: "beverage", label: "Bebida" },
+                { value: "bakery", label: "Bakery" },
                 { value: "postre", label: "Postre" },
                 { value: "sandwich", label: "Sandwich" },
             ]}
@@ -133,7 +144,7 @@ useEffect(() => {
         check={["url"]}
         required
         value={formData.image}
-        onValidChange={handleValidChange}
+        onValid={handleValidChange}
         placeholder="https://sitio-ejemplo.com/foto.jpg"
       />
 
@@ -142,18 +153,24 @@ useEffect(() => {
         name="description"
         id="description"
         label="Descripción"
-        check={["nameLong"]}
+        check={["nameLong", "minLength"]}
         value={formData.description}
-        onValidChange={handleValidChange}
+        onValid={handleValidChange}
         placeholder="Ingrese una breve descripción. Máximo de 150 caracteres."
         maxLength={150}
+        minLength={10}
+        required
       />
-
-      <button type="submit" disabled={loading} className="btn">
-        {isEdit ? "Actualizar Producto" : "Crear Producto"}
-      </button>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <div className="flex botonera">
+        <Btn type="submit" disabled={loading} $btn='main' $w>
+          {isEdit ? "Actualizar Producto" : "Crear Producto"}
+        </Btn>
+        <Btn $w onClick={() => navigate("/dashboard")}>
+          Cancelar
+        </Btn>
+      </div>
+      {error && <p className="error">{error}</p>}
+      <p>(*) Campos obligatorios</p>
     </form>
   );
 }

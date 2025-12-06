@@ -39,7 +39,7 @@ export const Users = [
     "fullname": "Clem",
     "email": "cstoad5@columbia.edu",
     "password": "oG4Wp0lS",
-    "rol": "admin"
+    "rol": "cliente"
   },
   {
     "id": "7",
@@ -60,7 +60,7 @@ export const Users = [
     "fullname": "Manny",
     "email": "mdykins8@msn.com",
     "password": "pK3AMH",
-    "rol": "admin"
+    "rol": "cliente"
   },
   {
     "id":"10",

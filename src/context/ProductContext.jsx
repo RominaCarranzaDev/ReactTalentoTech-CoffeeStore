@@ -24,7 +24,10 @@ export function ProductProvider({ children }) {
         };
         if (data && method !== "GET") options.body = JSON.stringify(data);
         const response = await fetch(url, options);
-        if (!response.ok) throw new Error(`Error ${method}: ${response.statusText}`);
+        if (!response.ok) {
+            if (method === "GET") return null;
+            throw new Error(`Error ${method}: ${response.statusText}`);
+}
         const result = await response.json();
         setSuccess("Operación realizada con éxito");
         return result;
@@ -39,19 +42,22 @@ export function ProductProvider({ children }) {
     const loadAllProducts = async () => {
         try {
             const data = await requestAPI(URL_PRODUCTS);
-            setProductos(data);
+            setProductos(data)
+            return data
         } catch (err) {
             console.error("Error al obtener productos:", err);
+            setError(err)
+            return null
         }
     };
 
     const getProductId = async (id) => {
         try {
             const data = await requestAPI(`${URL_PRODUCTS}/${id}`);
-            setProductoActual(data);
             return data;
         } catch (err) {
             console.error("Error al obtener producto:", err);
+            return null;
         }
     };
 
@@ -82,30 +88,37 @@ export function ProductProvider({ children }) {
             return data;
         } catch (err) {
             console.error("Error al crear producto:", err);
-        throw err;
+            throw err;
         }
     };
 
     const updateProduct = async (id, productoEditado) => {
-  try {
-    const data = await requestAPI(`${URL_PRODUCTS}/${id}`, "PUT", productoEditado);
+        setLoading(true)
+        try {
+            const data = await requestAPI(`${URL_PRODUCTS}/${id}`, "PUT", productoEditado);
 
-    setProductos(prev =>
-      prev.map(p => (p.id === id ? data : p))
-    );
+            setProductos(prev =>
+            prev.map(p => (p.id === id ? data : p))
+            );
 
-    return data;
-  } catch (err) {
-    console.error("Error al actualizar producto:", err);
-    throw err;
-  }
-};
+            return data;
+        } catch (err) {
+            console.error("Error al actualizar producto:", err);
+            throw err;
+        } finally {
+            setLoading(false)
+        }
+    };
+    
     const deleteProduct = async (id) => {
+        setLoading(true);
         try {
             await requestAPI(`${URL_PRODUCTS}/${id}`, "DELETE");
             setProductos((prev) => prev.filter((p) => p.id !== id));
+            setLoading(false);
         } catch (err) {
             console.error("Error al eliminar producto:", err);
+            setLoading(false);
         }
     };
 
@@ -130,12 +143,11 @@ export function ProductProvider({ children }) {
     return (
         <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
     );
-    }
-
-    export function useProductContext() {
+    } export function useProductContext() {
+    
     const context = useContext(ProductContext);
-    if (!context) {
-        throw new Error("useProductContext debe usarse dentro de ProductProvider");
-    }
-    return context;
+        if (!context) {
+            throw new Error("useProductContext debe usarse dentro de ProductProvider");
+        }
+        return context;
 }

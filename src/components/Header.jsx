@@ -1,19 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import IconCoffee from "../assets/logo-dvcafe.png"
+import IconCoffee from "/dolce_vita.webp"
 import Navbar from "./Navbar";
+import styled from "styled-components";
 
 function Header(){
     return (
-        <header className="header flex"> 
-            <div className="flex">
-                <Link to='/'>
-                    <img src={IconCoffee} alt="icono" className="icon"/>
-                </Link>
-                <h2>Dolce Vita Caffè</h2>
-            </div> 
+        <HeaderStyled> 
+            <Link to='/' className="toHome flex">
+                <img src={IconCoffee} alt="icono" width='150px'/>
+            </Link>
             <Navbar />
-        </header>
+        </HeaderStyled>
     );
-}
-export default Header;
+} export default Header;
+
+const HeaderStyled = styled.header`
+    background: var(--color-primary);
+    color: var(--color-white);
+    min-height: var(--height-header);
+    padding: var(--padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; 
+
+    & .menu-destok {
+    display: none;
+    }
+    
+    @media (min-width: 700px) {
+    & .menu-destok {
+        display: flex;
+        width: 100%;
+        }
+    }
+`

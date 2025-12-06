@@ -4,3 +4,5 @@ export const ENDPOINT = {
   productos: `${URL_API}/products`,
   usuarios: `${URL_API}/users`,
 };
+
+export const URL_FORMSPREE = 'https://formspree.io/f/movbpppe'

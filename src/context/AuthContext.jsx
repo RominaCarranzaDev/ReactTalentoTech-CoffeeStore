@@ -6,6 +6,8 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [loading , setLoading] = useState(true);
+
   const URL_USERS = ENDPOINT.usuarios
 
   useEffect(() => {
@@ -16,6 +18,7 @@ export function AuthProvider({ children }) {
       setUser(JSON.parse(storedUser));
       setToken(storedToken);
     }
+    setLoading(false)
   }, []);
 
   const crearFakeToken = (userId, username) => {
@@ -51,8 +54,8 @@ export function AuthProvider({ children }) {
 
         return { success: true, user: userData, token: fakeToken };
       } catch (err) {
-      console.error("Error al iniciar sesion:", err);
-      return { success: false, message: "Error inesperado al iniciar sesión" };
+        console.error("Error al iniciar sesion:", err);
+        return { success: false, message: "Error inesperado al iniciar sesión" };
       }
     }
 
@@ -97,6 +100,7 @@ export function AuthProvider({ children }) {
   const value = {
     user,
     token,
+    loading,
     iniciarSesion,
     cerrarSesion,
     crearUsuario,

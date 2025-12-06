@@ -1,96 +1,179 @@
 import { useState } from 'react';
-import '../styles/styleForm.css'
+import FormField from './FormField';
+import { URL_FORMSPREE } from '../config/AppConfig';
+import { toast } from 'react-toastify';
+import Btn from './Btn';
+import styled from 'styled-components';
+import ImgForm from '../assets/for-two.jpg';
 
-function FormContact() {
-  const [formulario, setFormulario] = useState({
-      nombre: '',
-      correo: '',
-      telefono:'',
-      motivo:'',
-      mensaje:''
+function ContactoForm() {
+  const [form, setForm] = useState({
+    nombre: "",
+    correo: "",
+    telefono: "",
+    motivo: "otro",
+    mensaje: "",
   });
+  const [fieldValid, setFieldValid] = useState({});
 
-  const manejarCambio = (e) => {
-    setFormulario({...formulario, [e.target.name]: e.target.value});
+  const handleValidChange = (name, value, isValid) => {
+    console.log(form)  
+  
+  setForm(prev => ({
+    ...prev,
+    [name]: value
+  }));
+  setFieldValid(prev => ({
+    ...prev,
+    [name]: isValid
+  }));
   };
 
-  const handlerEnvio = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+     e.preventDefault();
+    const allValid =  Object.values(fieldValid).every(v => v === true); 
 
-    setFormulario({
-      nombre: '',
-      correo: '',
-      telefono:'',
-      motivo:'',
-      mensaje:''
-    });
-  };
 
+  if (!allValid) {
+    toast.error("Por favor completá correctamente los campos obligatorios.");
+    return;
+  }
+
+    const form = new FormData(e.target);
+    try {
+      const response = await fetch(URL_FORMSPREE, {
+        method: "POST",
+        body: form,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        toast.success("Tu mensaje fue enviado correctamente ");
+      } else {
+        console.log("error API FormSpree");
+        toast.error("Ocurrió un error al enviar el mensaje.");
+      }
+    } catch (error) {
+      console.log("error API FormSpree");
+      toast.error("Error de conexión. Intenta nuevamente.");
+    }
+  }
 
   return (
-    <div className="containerFormContact">
-      <h3 className='title'>Contáctanos</h3>
-      <form onSubmit={handlerEnvio}>
-        <div className='containerInput'>
-          <label htmlFor='nombre'><span className="required">*</span> Nombre: </label>
-          <input
-            type="text"
-            name="nombre"
-            id="nombre"
-            value={formulario.nombre}
-            onChange={manejarCambio}
-            placeholder="Tu nombre "
-            required
-          />
-        </div>
-       
-        <div className='containerInput'>
-          <label htmlFor='correo'><span className="required">*</span> Correo: </label>
-          <input
-            type="email"
-            name="correo"
-            id="correo"
-            value={formulario.correo}
-            onChange={manejarCambio}
-            placeholder="tu-correo@email.com"
-            required
-            inputMode='email'
-          />
-        </div>
-        <div className='containerInput'>
-          <label htmlFor='telefono'>Telefono: </label>
-          <input
-            type='text'
-            name='telefono'
-            id='telefono'
-            value={formulario.telefono}
-            onChange={manejarCambio}
-            placeholder="Tu telefono "
-            inputMode='numeric'
-          />
-        </div>
-        <div className='containerInput'>
-          <label htmlFor='motivo'>Motivo: </label>
-          <select name="motivo" id="motivo"
-            value={formulario.motivo}
-            onChange={manejarCambio}>
-            <option value="otro">Otro motivo</option>
-            <option value="sugerencia">Sugerencia</option>
-            <option value="reclamo">Reclamo</option>
-            <option value="laboral">Trabajar con nosotros</option>
-          </select>
-        </div>
-        <div className='containerInput'>
-          <label htmlFor="mensaje"><span className="required">*</span> Tu mensaje</label>
-          <textarea name="mensaje" id="mensaje" 
-          placeholder='Escribe aquí tu mensaje...' required 
-          maxLength={80}
-          value={formulario.mensaje}
-          onChange={manejarCambio}
-          ></textarea>
-        </div>
-        <button type="submit" className='btn btn-form'>Enviar</button>
-      </form>
-    </div>
+    <FormContact>
+    <form onSubmit={handleSubmit}>
+      <FormField
+        fieldType='text'
+        name="nombre"
+        id="nombre"
+        label='Nombre'
+        value={form.nombre}
+        placeholder="Tu nombre"
+        required
+        onValid={handleValidChange}
+      />
+      <FormField
+        fieldType="email"
+        name="correo"
+        id="correo"
+        label='Correo electrónico'
+        value={form.correo}
+        placeholder="tu-correo@email.com"
+        required
+        onValid={handleValidChange}
+      />
+      <FormField
+        fieldType='text'
+        name='telefono'
+        id='telefono'
+        label='Teléfono'
+        value={form.telefono}
+        placeholder="Tu teléfono"
+        inputMode='numeric'
+        onValid={handleValidChange}
+      /> 
+      <FormField
+        fieldType='select'
+        name="motivo"
+        id="motivo"
+        value={form.motivo}
+        label='Motivo'
+        options={[
+          { value:"otro", label:"Otro motivo"},
+          { value:"reserva", label:"Reservar un mesa"},
+          { value:"sugerencia", label:"Sugerencia"},
+          { value:"reclamo", label:"Reclamo"},
+          { value:"laboral", label:"Trabajar con nosotros"}
+        ]}
+        onValid={handleValidChange}
+      />
+      <FormField
+        fieldType='textarea'
+        name="mensaje"
+        id="mensaje"
+        label='Mensaje'
+        placeholder='Escribe aquí tu mensaje...'
+        maxLength={180}
+        required
+        value={form.mensaje}
+        onValid={handleValidChange}
+        check={'maxLength'}
+      />
+      <p>(*) Campos obligatorios</p>
+
+      <Btn type="submit" $btn='main'>
+        Enviar mensaje
+      </Btn>
+
+    </form>
+    <div className='form-img'></div>
+    </FormContact>
   );
-} export default FormContact;
+} export default ContactoForm;
+
+const FormContact = styled.div`
+  padding: 5vh;
+  background: var(--color-gradient);
+  width:100%;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 18px 8px var(--color-ghost);
+
+  & form {
+  width: clamp( 220px, 70vw, 350px);
+  margin: 0 auto;
+  padding: 5vh 3vw;
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  }
+
+  & label {
+  color: var(--color-white);
+  }
+  & .form-field {
+  margin-bottom: 1.2rem;
+  }
+  & p {
+  color: var(--color-light);
+  margin-bottom: 2rem;
+  font-size: small;
+  }
+
+@media (min-width: 700px) {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+
+    & form {
+  margin: 5vh 8vw;
+  }
+
+  & .form-img {
+  flex-grow:1;
+  background: url('${ImgForm}') no-repeat center;
+  background-size: cover;
+  border-radius: 0 .8rem .8rem 0 ;
+  }
+}
+`

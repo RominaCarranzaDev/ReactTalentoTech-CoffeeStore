@@ -8,23 +8,23 @@ export default function FieldValidator() {
 
     textShort(value) {
     const maxValue = 50
-    return (value.length > maxValue) ? { valid: false, error: `Máximo ${maxValue} caracteres` }
+    return (value.length > maxValue) ? { valid: false, error: `Debe tener un máximo de ${maxValue} caracteres` }
     : { valid: true, value };
     },
 
     textLong(value) {
       const maxValue = 150
-      return (value.length > maxValue) ? { valid: false, error: `Máximo ${maxValue} caracteres`  } 
+      return (value.length > maxValue) ? { valid: false, error: `Debe tener un máximo de ${maxValue} caracteres`  } 
       : { valid: true, value};
     },
 
     number(value) {
-      return (value === "" || isNaN(value)) ? { valid: false, error: "Debe ser un número" }
+      return (isNaN(value)) ? { valid: false, error: "Debe ser un número" }
       : { valid: true, value: Number(value) };
     },
 
     price(value) {
-        if (value === "") return { valid: false, error: "Campo obligatorio" };
+        if (value === "") return { valid: false, error: "Este campo es obligatorio" };
         const num = parseFloat(value);
         if (isNaN(num)) return { valid: false, error: "Debe ser un número válido" };
         if (num < 0) return { valid: false, error: "Debe ser positivo" };
@@ -55,19 +55,29 @@ export default function FieldValidator() {
     },
 
     email(value, { required = false } = {}) {
-        if (required && !value.trim()) return { valid: false, error: "Campo obligatorio" };
+        if (required && !value.trim()) return { valid: false, error: "Este campo es obligatorio" };
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(value) ? { valid: true, value }
         : { valid: false, error: "Correo electrónico inválido" };
     },
 
     password(value, { min = 0, max = 18 } = {}) {
-      if (!value.trim()) return { valid: false, error: "Campo obligatorio" };
+      if (!value.trim()) return { valid: false, error: "Este campo es obligatorio" };
       if (value.length < min) return { valid: false, error: `Debe tener al menos ${min} caracteres` };
       if (value.length > max) return { valid: false, error: `Máximo ${max} caracteres` };
       return { valid: true, value };
     },
 
+    minLength(value, {min = 10} = {}) {
+      if (!value) return { valid: false, error: "Este campo es obligatorio" };
+      if (value.length < min ) {
+        return {
+          valid: false,
+          error: `Debe tener al menos ${min} caracteres. Te faltan ${min-value.length} caracteres.`
+        };
+      }
+      return { valid: true };
+    },
     };
     return validators;
 }

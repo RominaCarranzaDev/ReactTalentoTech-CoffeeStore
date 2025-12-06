@@ -1,24 +1,52 @@
-import React, { createContext, useContext, useState }from 'react'
+import React, { createContext, useContext, useState, useEffect}from 'react';
+import { toast } from 'react-toastify';
+
 
 export const CartContext = createContext();
 
 export function CartProvider({children}){
     const [carrito, setCarrito] = useState([]);
+    const [cargaCompleta, setCargaCompleta] = useState(false); 
+
+    useEffect(() => {
+        const carritoGuardado = localStorage.getItem("carrito"); 
+        if (carritoGuardado) { setCarrito(JSON.parse(carritoGuardado)) }
+        setCargaCompleta(true);
+    }, []); 
+
+    useEffect(() => {
+        if (cargaCompleta) { localStorage.setItem("carrito", JSON.stringify(carrito)) }
+    }, [carrito, cargaCompleta]);
 
     const agregarAlCarrito = (producto) => {
         setCarrito((carrito) => {
         const productoExistente = carrito.find(p => p.id === producto.id);
 
         if (productoExistente) {
+           if (productoExistente.quantity + 1 > producto.stock) {
+                return carrito;
+            }
             return carrito.map(p =>
                 p.id === producto.id
                 ? { ...p, quantity: p.quantity + 1}
                 : p
             );
+        } 
+
+        return [...carrito, { ...producto, quantity: 1 }];
+        });
+
+        const existe = carrito.find(p => p.id === producto.id);
+
+        if (existe) {
+            if (existe.quantity + 1 > producto.stock) {
+            toast.error("No hay stock disponible en este momento.");
+            } else {
+            toast.success("Producto agregado al pedido.");
+            }
         } else {
-            return [...carrito, { ...producto, quantity: 1 }];
+            toast.success("Producto agregado al carrito.");
         }
-    });
     };
 
     const vaciarCarrito = () => {
@@ -27,6 +55,7 @@ export function CartProvider({children}){
 
     const eliminarProducto = (producto) => {  
         setCarrito((carrito) => carrito.filter((p) => p.id !== producto.id)); 
+        toast.success('Producto eliminado del pedido.')
     }
 
     const restarAlCarrito = (idProducto) => {

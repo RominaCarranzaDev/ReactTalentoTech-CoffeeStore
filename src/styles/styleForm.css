@@ -31,8 +31,6 @@ span.required {
     padding: .5rem;
 }
 .containerFormLogin {
-    flex-direction: column;
-    width: 320px;
     min-height: 80vh;
     padding: var(--padding);
 }
