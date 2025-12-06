@@ -48,7 +48,7 @@ function Ecommerce() {
     updateMetaTag('og:title', 'Coffee Store | Dolce Vita Caffé', 'property');
     updateMetaTag('og:description', 'En Dolce Vita transformamos cada taza de café en una experiencia. Aromas intensos, sabor auténtico y un espacio pensado para disfrutar el ritual del buen café.', 'property');
     updateMetaTag('og:type', 'website', 'property');
-    updateMetaTag('og:image', `https://tudominio.com/`, 'property');
+    updateMetaTag('og:image', `https://coffeestoredolce-vita-tt25.vercel.app/logo.webp`, 'property');
     updateMetaTag('og:url', window.location.href, 'property');
   }, []);
 

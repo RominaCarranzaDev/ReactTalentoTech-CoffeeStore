@@ -29,7 +29,7 @@ export default function FormUser({ mode = "login", onSubmit, onSwap }) {
   return (
     <FormContainer>
       <div className="form-header">
-        <img src="../src/assets/logo.png" alt="icono" />      
+        <img src="/logo.webp" alt="icono" />      
         {mode === "login" ?
           (<>
             <h2>Un buen día empieza con un buen café</h2>

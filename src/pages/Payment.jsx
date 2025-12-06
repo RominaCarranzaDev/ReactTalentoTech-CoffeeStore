@@ -36,7 +36,7 @@ function Payment() {
             { carrito.length > 0 ? (
             <Ticket>
                 <div className="ticket-header">
-                    <img src="src\assets\Logo.png" alt="Logo" width='120px'/>
+                    <img src="/logo.webp" alt="Logo" width='120px'/>
                     <h1 className='font-title'>Dolce Vita Caffé</h1>
                     <div className="divider"></div>
                     <p className='ticket-date'>{date}</p>
