@@ -6,10 +6,7 @@
 
 :root {
   font-family: 'Nunito', sans-serif;
-  color: var(--color-white);
-  background-color: var(--color-black);
 
-  color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -100,9 +97,3 @@ img {
   animation: fade-in .3s ease-out;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--color-black);
-    background-color: #fdfdfd;
-  }
-}
